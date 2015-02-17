@@ -86,6 +86,24 @@
     return [self initWithItemName:@"Item"];
 }
 
+- (void)setContainedItem:(OMItem *)item
+{
+    _containedItem = item;
+}
+- (OMItem *)ContainedItem
+{
+    return _containedItem;
+}
+
+- (void)setContainer:(OMItem *)item
+{
+    _container = item;
+}
+- (OMItem *)Container
+{
+    return _container;
+}
+
 - (void)setItemName:(NSString *) str
 {
     _itemName = str;
@@ -128,6 +146,11 @@
      self.dateCreated];
     
     return descriptionString;
+}
+
+- (void)dealloc
+{
+    NSLog(@"Destroyed: %@", self);
 }
 
 @end

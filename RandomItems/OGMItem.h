@@ -16,6 +16,10 @@
     int _valueInDollars;
     NSDate *_dateCreated;
     
+    OMItem *_containedItem;
+
+    __weak OMItem *_container; //__weak attribute solves the strong reference cycle
+    
 }
 
 +(instancetype)randomItem;
@@ -26,6 +30,12 @@
                     serialNumber:(NSString *)sNumber;
 
 - (instancetype)initWithItemName:(NSString*)name;
+
+- (void)setContainedItem:(OMItem *)item;
+- (OMItem *)ContainedItem;
+
+- (void)setContainer:(OMItem *)item;
+- (OMItem *)Container;
 
 - (void)setItemName:(NSString *) str;
 - (NSString *)itemName;

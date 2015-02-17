@@ -65,10 +65,27 @@ int main(int argc, const char * argv[]) {
         NSLog(@"%@", itemWithoutName);
         */
         
+        /*
+        // Populating array with random items
         for (int i = 0; i < 10; i++){
             OMItem *item = [OMItem randomItem];
             [items addObject:item];
         }
+        */
+        
+        // Creating strong reference cycle, items never get deleted
+        // __weak attribute given to container solves this.
+        OMItem *backpack = [[OMItem alloc] initWithItemName:@"Backpack"];
+        [items addObject:backpack];
+        OMItem *calculator = [[OMItem alloc] initWithItemName:@"Calculator"];
+        [items addObject:calculator];
+        
+        [backpack setContainedItem:(OMItem *)calculator]; //or more easily backpack.containedItem = calculator;
+        calculator.Container = backpack;
+        backpack = nil;
+        calculator = nil;
+        
+        
         
         /*
         // Invoking an exception "unrecognized selector"
@@ -80,6 +97,7 @@ int main(int argc, const char * argv[]) {
             NSLog(@"%@",item);
         }
         
+        NSLog(@"Setting items to nill...");        
         // destroying the mutable array object
         items = nil;
         
