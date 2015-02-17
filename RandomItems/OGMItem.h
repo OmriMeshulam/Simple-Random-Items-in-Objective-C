@@ -9,18 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface OMItem : NSObject
-{
-    
-    NSString *_itemName;
-    NSString *_serialNumber;
-    int _valueInDollars;
-    NSDate *_dateCreated;
-    
-    OMItem *_containedItem;
 
-    __weak OMItem *_container; //__weak attribute solves the strong reference cycle
-    
-}
+@property (nonatomic, copy) NSString *itemName;
+@property (nonatomic, copy) NSString *serialNumber;
+@property (nonatomic) int valueInDollars;
+@property (nonatomic, readonly, strong) NSDate *dateCreated;
+@property (nonatomic, strong) OMItem *containedItem;
+@property (nonatomic, weak) OMItem *container;
 
 +(instancetype)randomItem;
 
@@ -31,21 +26,6 @@
 
 - (instancetype)initWithItemName:(NSString*)name;
 
-- (void)setContainedItem:(OMItem *)item;
-- (OMItem *)ContainedItem;
 
-- (void)setContainer:(OMItem *)item;
-- (OMItem *)Container;
-
-- (void)setItemName:(NSString *) str;
-- (NSString *)itemName;
-
-- (void)setSerialNumber:(NSString *)str;
-- (NSString *) serialNumber;
-
-- (void)setValueInDollars:(int)val;
-- (int)valueInDollars;
-
-- (NSDate *)dateCreated;
 
 @end

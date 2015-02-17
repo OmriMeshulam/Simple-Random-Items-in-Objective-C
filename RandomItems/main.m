@@ -81,7 +81,6 @@ int main(int argc, const char * argv[]) {
         [items addObject:calculator];
         
         [backpack setContainedItem:(OMItem *)calculator]; //or more easily backpack.containedItem = calculator;
-        calculator.Container = backpack;
         backpack = nil;
         calculator = nil;
         
